@@ -20,12 +20,18 @@
                         <a class="btn p-0 text-primary me-0" href="#"><i class="fab fa-linkedin-in"></i></a> --}}
                     </div>
                     <div class="dropdown ms-3">
-                        <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown"><small><i class="fas fa-globe-europe text-primary me-2"></i> English</small></a>
+                        <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                            <small><i class="fas fa-globe-europe text-primary me-2"></i> {{ __('messages.language') }}</small>
+                        </a>
                         <div class="dropdown-menu rounded">
-                            <a href="#" class="dropdown-item">English</a>
-                            <a href="#" class="dropdown-item">Vietnamese</a>
+                            <form action="{{ route('change.language') }}" method="POST">
+                                @csrf
+                                <button type="submit" name="locale" value="en" class="dropdown-item">{{ __('English') }}</button>
+                                <button type="submit" name="locale" value="vi" class="dropdown-item">{{ __('Vietnamese') }}</button>
+                            </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

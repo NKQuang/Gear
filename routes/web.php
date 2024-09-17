@@ -12,6 +12,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SettingController;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,8 @@ Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 Route::post('/update-exchange-rate', [SettingController::class, 'updateExchangeRate'])->name('update.exchange.rate');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/change-language', function (Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+    Session::put('locale', $locale);
+    return redirect()->back();
+})->name('change.language');
