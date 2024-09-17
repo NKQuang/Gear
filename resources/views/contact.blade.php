@@ -33,50 +33,51 @@
                     <div>
                         <h4 class="text-primary">Send Your Message</h4>
 
-                        <form>
+                        <form action="{{ route('contact.store') }}" method="POST">
+                            @csrf
                             <div class="row g-3">
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                                        <input type="text" class="form-control border-0" id="name" name="name" placeholder="Your Name">
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
+                                        <input type="email" class="form-control border-0" id="email" name="email" placeholder="Your Email">
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="phone" class="form-control border-0" id="phone" placeholder="Phone">
+                                        <input type="text" class="form-control border-0" id="phone" name="phone" placeholder="Phone">
                                         <label for="phone">Your Phone</label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="project" placeholder="Project">
-                                        <label for="project">Your Project</label>
+                                        <input type="text" class="form-control border-0" id="address" name="address" placeholder="Address">
+                                        <label for="address">Your Address</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
+                                        <input type="text" class="form-control border-0" id="subject" name="subject" placeholder="Subject">
                                         <label for="subject">Subject</label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 120px"></textarea>
+                                        <textarea class="form-control border-0" placeholder="Leave a message here" id="message" name="message" style="height: 120px"></textarea>
                                         <label for="message">Message</label>
                                     </div>
-
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3">Send Message</button>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
                 <div class="col-12">
@@ -141,4 +142,18 @@
         </div>
     </div>
     <!-- Contact End -->
+@endsection
+@section('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                confirmButtonText: 'OK'
+            });
+        @endif
+    });
+</script>
 @endsection

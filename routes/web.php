@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SettingController;
 
@@ -48,7 +49,7 @@ Route::get('/productdetail/{id}', [ProductController::class, 'showdetail'])->nam
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-Route::get('/cart',[CartController::class,'showCart'])->name('cart');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
 
 
@@ -71,8 +72,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('product-types', ProductTypeController::class);
     Route::resource('news', NewsController::class);
+    Route::get('/feedback', [ContactController::class, 'index'])->name('admin.feedback');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 Route::get('blog', [NewsController::class, 'publicIndex'])->name('blog');
 Route::get('blog/{id}', [NewsController::class, 'publicShow'])->name('blogdetail');
@@ -80,3 +82,4 @@ Route::get('/settings', [SettingController::class, 'index'])->name('settings');
 
 Route::post('/update-exchange-rate', [SettingController::class, 'updateExchangeRate'])->name('update.exchange.rate');
 
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

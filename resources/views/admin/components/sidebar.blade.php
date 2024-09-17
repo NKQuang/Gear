@@ -72,6 +72,12 @@
             </div>
         </div>
     </li>
+    <li class="nav-item {{ request()->routeIs('admin.feedback') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.feedback') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Liên Hệ</span>
+        </a>
+    </li>
     <li class="nav-item {{ request()->routeIs('settings') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('settings') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
